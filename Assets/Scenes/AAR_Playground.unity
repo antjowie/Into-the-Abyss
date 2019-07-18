@@ -174,7 +174,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 196364103}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.658, y: 2.075, z: -10}
+  m_LocalPosition: {x: -6.72, y: 1.7, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1628979690}
@@ -10263,7 +10263,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.1509434, g: 0.10466359, b: 0.11728536, a: 1}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -10303,7 +10303,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.658, y: 2.075, z: -10}
+  m_LocalPosition: {x: -6.72, y: 1.7, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -10466,12 +10466,12 @@ PrefabInstance:
     - target: {fileID: 5116942437757975215, guid: 479a57a2a56965f4193bf161857e80f6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.658
+      value: -6.72
       objectReference: {fileID: 0}
     - target: {fileID: 5116942437757975215, guid: 479a57a2a56965f4193bf161857e80f6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.075
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 5116942437757975215, guid: 479a57a2a56965f4193bf161857e80f6,
         type: 3}
