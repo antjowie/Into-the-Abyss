@@ -10364,7 +10364,6 @@ GameObject:
   - component: {fileID: 1628979690}
   - component: {fileID: 1628979693}
   - component: {fileID: 1628979691}
-  - component: {fileID: 1628979692}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -10427,18 +10426,6 @@ MonoBehaviour:
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 5000
---- !u!114 &1628979692
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1628979689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4c41ac9245b87c4192012080077d830, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1628979693
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -10522,6 +10509,16 @@ PrefabInstance:
         type: 3}
       propertyPath: speed
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5116942437757975213, guid: 479a57a2a56965f4193bf161857e80f6,
+        type: 3}
+      propertyPath: dashDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5116942437757975213, guid: 479a57a2a56965f4193bf161857e80f6,
+        type: 3}
+      propertyPath: dashCooldown
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 479a57a2a56965f4193bf161857e80f6, type: 3}
