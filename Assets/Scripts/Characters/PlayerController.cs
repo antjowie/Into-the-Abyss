@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 5f;
+    [SerializeField] SwordController weapon;
+
     [SerializeField] float dashSpeed = 8f;
     [SerializeField] float dashDuration = 0.5f;
     [SerializeField] float dashCooldown = 2f;
@@ -17,6 +19,10 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody2D rb;
     Vector2 movement;
+
+    InputDown horizontalAttack = new InputDown("HorizontalAttack");
+    InputDown verticalAttack = new InputDown("VerticalAttack");
+    InputDown dash = new InputDown("Dash");
 
     enum State
     {
@@ -34,22 +40,47 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    // Update the movement that the player requests
+    void UpdateMovement()
     {
-        // Update objects that are used for transitions is the fsm
-        movement.x = Input.GetAxisRaw("HorizontalMove");
-        movement.y = Input.GetAxisRaw("VerticalMove");
+        movement.x = Input.GetAxisRaw("HorizontalMove"); 
+        movement.y = Input.GetAxisRaw("VerticalMove");   
 
         movement.Normalize();
-        bool isMoving = movement.sqrMagnitude != 0f;
+    }
 
+    // Update the cooldown of the dash and checks whether the player is dashing
+    void UpdateDashState()
+    {
+        // Update dash cooldown
         dashCooldownProgression = Mathf.Clamp(dashCooldownProgression - Time.deltaTime, 0, dashCooldown);
         if (!isDashing && dashCooldownProgression == 0f)
         {
-           isDashing = Input.GetAxisRaw("Dash") == 1f;
+            isDashing = dash.GetInputDown() == 1f;
         }
+    }
 
-        //Debug.Log(m_state);
+    void UpdateAttackState()
+    {
+        float x = horizontalAttack.GetInputDown();
+        float y = verticalAttack.GetInputDown();
+        if (x != 0f)
+            weapon.Attack(x == -1f ? SwordController.Direction.Left : SwordController.Direction.Right);
+        else if (y != 0f)
+            weapon.Attack(y == -1f ? SwordController.Direction.Down: SwordController.Direction.Up);
+    }
+    
+    void Update()
+    {
+        // Update objects that are used for transitions is the fsm
+        UpdateMovement();
+        UpdateDashState();
+        UpdateAttackState();
+        bool isMoving = movement.sqrMagnitude != 0f;
+
+        horizontalAttack.Update();
+        verticalAttack.Update();
+        dash.Update();
 
         // Execute the fsm and the transitions
         switch (m_state)
@@ -81,17 +112,20 @@ public class PlayerController : MonoBehaviour
                 break;
 
             case State.Dashing:
+                // Initial enter condition
                 if (dashProgression == 0f)
                     dashDirection = movement;
 
-
+                // Update the progression of the dash
                 dashProgression = Mathf.Clamp(dashProgression + Time.deltaTime, dashProgression, dashDuration);
                 dashRotation = dashProgression / dashDuration * 360f;
                 if (dashDirection.x > 0f)
                     dashRotation *= -1f;
 
+                // Transform the object. This is a temp and will be replaced with an animation trigger
                 transform.rotation = Quaternion.Euler(0, 0, dashRotation);
 
+                // Exit condition
                 if (dashProgression == dashDuration)
                 {
                     isDashing = false;
@@ -121,15 +155,19 @@ public class PlayerController : MonoBehaviour
         {
             case State.Spawning:
                 break;
+
             case State.Idle:
                 break;
+
             case State.Moving:
                 rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
                 break;
+
             case State.Dashing:
-                
+                //rb.MoveRotation(dashRotation);
                 rb.MovePosition(rb.position + dashDirection * dashSpeed * Time.fixedDeltaTime);
                 break;
+
             case State.Dead:
                 break;
         }

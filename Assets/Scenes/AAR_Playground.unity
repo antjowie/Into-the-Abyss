@@ -9025,8 +9025,8 @@ Tilemap:
       m_ColliderType: 2
   - first: {x: 0, y: 25, z: 0}
     second:
-      m_TileIndex: 10
-      m_TileSpriteIndex: 10
+      m_TileIndex: 14
+      m_TileSpriteIndex: 14
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -9405,7 +9405,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: b2c930e7ac4a8a94d862eafcb83ae0bb, type: 2}
   - m_RefCount: 26
     m_Data: {fileID: 11400000, guid: ce1e376369c5f424da8cd8a8548a8fd3, type: 2}
-  - m_RefCount: 22
+  - m_RefCount: 21
     m_Data: {fileID: 11400000, guid: 7e59e42c00cfd084bb193e9a48fb8654, type: 2}
   - m_RefCount: 4
     m_Data: {fileID: 11400000, guid: b283116decc69c44ea137d13d9b0b908, type: 2}
@@ -9413,7 +9413,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: a5d2f6c62f4c3954789db0be4730c559, type: 2}
   - m_RefCount: 6
     m_Data: {fileID: 11400000, guid: 737a981892b91db45aec83c55219fc91, type: 2}
-  - m_RefCount: 5
+  - m_RefCount: 6
     m_Data: {fileID: 11400000, guid: 262d7437fca9bef458d5f686a70b15ce, type: 2}
   - m_RefCount: 9
     m_Data: {fileID: 11400000, guid: 42d951b6e2cb75f4b8602b6ee2c48e38, type: 2}
@@ -9472,7 +9472,7 @@ Tilemap:
     m_Data: {fileID: 21300014, guid: 411fb3387fc8f0b47b8f68fb96153159, type: 3}
   - m_RefCount: 26
     m_Data: {fileID: 21300022, guid: 411fb3387fc8f0b47b8f68fb96153159, type: 3}
-  - m_RefCount: 22
+  - m_RefCount: 21
     m_Data: {fileID: 21300004, guid: 411fb3387fc8f0b47b8f68fb96153159, type: 3}
   - m_RefCount: 4
     m_Data: {fileID: 21300040, guid: 411fb3387fc8f0b47b8f68fb96153159, type: 3}
@@ -9480,7 +9480,7 @@ Tilemap:
     m_Data: {fileID: 21300020, guid: 411fb3387fc8f0b47b8f68fb96153159, type: 3}
   - m_RefCount: 6
     m_Data: {fileID: 21300002, guid: 411fb3387fc8f0b47b8f68fb96153159, type: 3}
-  - m_RefCount: 5
+  - m_RefCount: 6
     m_Data: {fileID: 21300018, guid: 411fb3387fc8f0b47b8f68fb96153159, type: 3}
   - m_RefCount: 9
     m_Data: {fileID: 21300042, guid: 411fb3387fc8f0b47b8f68fb96153159, type: 3}
@@ -10519,6 +10519,16 @@ PrefabInstance:
         type: 3}
       propertyPath: dashCooldown
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5116942437757975213, guid: 479a57a2a56965f4193bf161857e80f6,
+        type: 3}
+      propertyPath: dashSpeed
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401195733227567825, guid: 479a57a2a56965f4193bf161857e80f6,
+        type: 3}
+      propertyPath: attackDuration
+      value: 0.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 479a57a2a56965f4193bf161857e80f6, type: 3}
