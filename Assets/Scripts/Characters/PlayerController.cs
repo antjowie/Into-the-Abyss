@@ -164,7 +164,7 @@ public class PlayerController : MonoBehaviour
                 break;
 
             case State.Dashing:
-                //rb.MoveRotation(dashRotation);
+                rb.MoveRotation(dashRotation);
                 rb.MovePosition(rb.position + dashDirection * dashSpeed * Time.fixedDeltaTime);
                 break;
 
