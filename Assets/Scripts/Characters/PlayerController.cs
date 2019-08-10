@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 5f;
-    [SerializeField] SwordController weapon;
+    [SerializeField] Sword weapon;
 
     [SerializeField] float dashSpeed = 8f;
     [SerializeField] float dashDuration = 0.5f;
@@ -65,9 +63,9 @@ public class PlayerController : MonoBehaviour
         float x = horizontalAttack.GetInputDown();
         float y = verticalAttack.GetInputDown();
         if (x != 0f)
-            weapon.Attack(x == -1f ? SwordController.Direction.Left : SwordController.Direction.Right);
+            weapon.Attack(x == -1f ? Sword.Direction.Left : Sword.Direction.Right);
         else if (y != 0f)
-            weapon.Attack(y == -1f ? SwordController.Direction.Down: SwordController.Direction.Up);
+            weapon.Attack(y == -1f ? Sword.Direction.Down: Sword.Direction.Up);
     }
     
     void Update()

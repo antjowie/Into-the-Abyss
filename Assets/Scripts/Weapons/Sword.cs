@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class SwordController : MonoBehaviour
+public class Sword : MonoBehaviour
 {
     public enum Direction
     {
@@ -14,7 +12,7 @@ public class SwordController : MonoBehaviour
 
     [SerializeField] float attackCooldown = 1f;
     [SerializeField] float attackDuration = 0.25f;
-
+    
     float attackProgression = 0f;
     float attackRegeneration = 0f; // If this value is zero, can attack again
     bool isAttacking = false;

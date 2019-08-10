@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    // Temp ref to a player controller
     [SerializeField] Transform target;
+    [SerializeField] Gun gun;
     [SerializeField] float speed = 2f;
 
     Rigidbody2D rb;
@@ -22,5 +24,8 @@ public class EnemyController : MonoBehaviour
         Vector2 position = transform.position;
 
         rb.MovePosition(position + direction * speed * Time.deltaTime);
+
+        // Update weapon
+        gun.Aim(target.position);
     }
 }
