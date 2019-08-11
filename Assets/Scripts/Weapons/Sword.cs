@@ -50,6 +50,12 @@ public class Sword : MonoBehaviour
         {
             Destroy(collision.gameObject);
         }
+        else if(collision.GetComponent<Bullet>())
+        {
+            collision.GetComponent<Bullet>().CanKillEnemies = true;
+            Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
+            rb.velocity = (rb.position - (Vector2)transform.parent.position).normalized * rb.velocity.magnitude;
+        }
     }
 
     public void Attack(Direction direction)

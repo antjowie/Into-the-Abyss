@@ -149,6 +149,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sword
       objectReference: {fileID: 0}
+    - target: {fileID: 5644194152839906287, guid: 53e43f1d0a343ad46a6f2425f1421717,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5288164564491404469, guid: 53e43f1d0a343ad46a6f2425f1421717,
         type: 3}
       propertyPath: m_LocalPosition.x

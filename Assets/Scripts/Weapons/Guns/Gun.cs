@@ -13,7 +13,6 @@ public class Gun : MonoBehaviour
     public void Update()
     {
         shotCooldown = Mathf.Clamp(shotCooldown - Time.deltaTime,0, 1f / gunStats.fireRate);
-        Debug.Log(shotCooldown);
     }
 
     public void Aim(Vector2 target)
@@ -48,6 +47,9 @@ public class Gun : MonoBehaviour
     
     private void OnValidate()
     {
-        GetComponent<SpriteRenderer>().sprite = gunStats.sprite;
+        if(gunStats)
+        {
+            GetComponent<SpriteRenderer>().sprite = gunStats.sprite;
+        }
     }
 }
