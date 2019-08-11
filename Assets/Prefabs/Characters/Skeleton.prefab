@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17c2c7cb363cf2e48af40228b3530d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletSpeed: 10
+  gunStats: {fileID: 0}
 --- !u!1001 &2101658601777027797
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -214,6 +214,16 @@ PrefabInstance:
     - target: {fileID: 2987076824668721846, guid: 6b575da74026c5e45a2a7616016bdcef,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6585919148122948368, guid: 6b575da74026c5e45a2a7616016bdcef,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6585919148122948368, guid: 6b575da74026c5e45a2a7616016bdcef,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

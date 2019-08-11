@@ -1,14 +1,19 @@
 ﻿using UnityEngine;
 
+// The gun class is responsible for being the game object. It is the interface that is used to make a weapon fire.
+// It is responsible for displaying the weapon and updating its state using the strategy pattern.
 public class Gun : MonoBehaviour
 {
-    [SerializeField] float BulletSpeed = 10f;
+    [SerializeField] GunStats gunStats;
 
     Vector2 targetPos;
-    
-    public void Shoot()
-    {
+    float shotCooldown = 0f;
 
+    // This function has to be called after press or released fire is called by the AI
+    public void Update()
+    {
+        shotCooldown = Mathf.Clamp(shotCooldown - Time.deltaTime,0, 1f / gunStats.fireRate);
+        Debug.Log(shotCooldown);
     }
 
     public void Aim(Vector2 target)
@@ -29,5 +34,20 @@ public class Gun : MonoBehaviour
         
         // First we change the image to face in the forward direction, then we rotate it towards the lookat direction.
         transform.rotation = rotation * forwardRotation;
+    }
+
+    public void Shoot()
+    {
+        if(shotCooldown == 0f)
+        {
+            Bullet bullet = Instantiate(gunStats.bullet,transform.position,Quaternion.identity);
+            bullet.Launch(targetPos - (Vector2)transform.position, gunStats.bulletSpeed);
+            shotCooldown = 1f / gunStats.fireRate;
+        }
+    }
+    
+    private void OnValidate()
+    {
+        GetComponent<SpriteRenderer>().sprite = gunStats.sprite;
     }
 }

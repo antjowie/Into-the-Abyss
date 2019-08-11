@@ -10510,6 +10510,11 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 203860997044647929, guid: 479a57a2a56965f4193bf161857e80f6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 479a57a2a56965f4193bf161857e80f6, type: 3}
 --- !u!1001 &8018297052838267095
@@ -10578,6 +10583,23 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480235177521549281, guid: cdd0f80dc895d6c4db0febe5cea19e47,
+        type: 3}
+      propertyPath: gunStats
+      value: 
+      objectReference: {fileID: 11400000, guid: f279b7545c17f4d438b2b6e50c2710bd,
+        type: 2}
+    - target: {fileID: 5066397636414642629, guid: cdd0f80dc895d6c4db0febe5cea19e47,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 76658a0f5438dd44ca3f7f7e60d9723c,
+        type: 3}
+    - target: {fileID: 5066397636414642629, guid: cdd0f80dc895d6c4db0febe5cea19e47,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdd0f80dc895d6c4db0febe5cea19e47, type: 3}

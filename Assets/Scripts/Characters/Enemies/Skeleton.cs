@@ -28,12 +28,25 @@ public class Skeleton : EnemyController
 
     void Update()
     {
+        // Aim and shoot the gun
         gun.Aim(targetPos.position);
-
-        Vector2 distance = rb.transform.position - targetPos.position;
+        Vector2 lookDir = ((Vector2)targetPos.position - rb.position).normalized;
+        
+        // We use lookdir but we should multiply it by the size of the enemy so that the raycast doesn't hit itself
+        RaycastHit2D hit = Physics2D.Raycast(rb.position + lookDir, lookDir);
+        if (hit.collider.name == "Player")
+        {
+            gun.Shoot();
+            Debug.DrawRay(rb.position + lookDir, hit.point - rb.position,Color.red);
+        }
+        else
+        {
+            Debug.DrawRay(rb.position + lookDir,hit.point - rb.position);
+        }
 
         // Decide move direction
         // Player is too close to enemy, enemy wants to walk away
+        Vector2 distance = rb.transform.position - targetPos.position;
         if(distance.magnitude < distanceFromTarget - distanceFromTargetBias)
         {
             moveDirection = rb.transform.position - targetPos.position;
