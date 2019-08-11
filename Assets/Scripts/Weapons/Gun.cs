@@ -6,16 +6,6 @@ public class Gun : MonoBehaviour
 
     Vector2 targetPos;
     
-    private void Start()
-    {
-    }
-    
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void Shoot()
     {
 

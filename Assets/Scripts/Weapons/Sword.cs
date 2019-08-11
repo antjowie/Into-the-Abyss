@@ -43,6 +43,15 @@ public class Sword : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // If sword hits an enemy destroy it
+        if(collision.GetComponent<EnemyController>())
+        {
+            Destroy(collision.gameObject);
+        }
+    }
+
     public void Attack(Direction direction)
     {
         if(!isAttacking && attackRegeneration == 0f)
