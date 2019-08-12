@@ -13,7 +13,7 @@ public class InputDown
     public float GetInputDown()
     {
         float val = Input.GetAxisRaw(inputName);
-        if(!isTriggered && val != 0f)
+        if (!isTriggered && val != 0f)
         {
             isTriggered = true;
             return val;
