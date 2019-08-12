@@ -43,20 +43,6 @@ public class Skeleton : EnemyController, IMovableEnemy
         {
             Debug.DrawRay(rb.position + lookDir, hit.point - rb.position);
         }
-
-        // Decide move direction
-        // Player is too close to enemy, enemy wants to walk away
-        Vector2 distance = rb.transform.position - targetPos.position;
-        if (distance.magnitude < distanceFromTarget - distanceFromTargetBias)
-        {
-            moveDirection = rb.transform.position - targetPos.position;
-        }
-        else
-        {
-            moveDirection = Vector2.zero;
-        }
-
-        moveDirection.Normalize();
     }
 
     protected override void OnFixedUpdate()
@@ -68,7 +54,7 @@ public class Skeleton : EnemyController, IMovableEnemy
 
     public void ChangeMoveDirection(Vector2 newMoveDirection)
     {
-        moveDirection = newMoveDirection;
+        moveDirection = newMoveDirection.normalized;
     }
 
     protected override void HandleSwitchingState(EnemyStateType stateToSwitchTo)
@@ -82,6 +68,20 @@ public class Skeleton : EnemyController, IMovableEnemy
                 float fleeDistance = distanceFromTarget + distanceFromTargetBias;
                 currentEnemyState = new FleeEnemyState(this, targetPos, fleeDistance);
                 break;
+            case EnemyStateType.Idle:
+                currentEnemyState = new IdleEnemyState(this, ChaseOrFleeFromTargetDependingOnDistance);
+                break;
+        }
+    }
+
+    private void ChaseOrFleeFromTargetDependingOnDistance() {
+        Vector2 distance = rb.transform.position - targetPos.position;
+        if (distance.magnitude < distanceFromTarget - distanceFromTargetBias)
+        {
+            SwitchToState(EnemyStateType.Flee);
+        }
+        else if (distance.magnitude > distanceFromTarget - distanceFromTargetBias) {
+            SwitchToState(EnemyStateType.Chase);
         }
     }
 }
