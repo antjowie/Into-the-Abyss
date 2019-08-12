@@ -78,6 +78,10 @@ public class Skeleton : EnemyController, IMovableEnemy
                 float catchUpDistance = distanceFromTarget + distanceFromTargetBias;
                 currentEnemyState = new ChaseEnemyState(this, targetPos, catchUpDistance);
                 break;
+            case EnemyStateType.Flee:
+                float fleeDistance = distanceFromTarget + distanceFromTargetBias;
+                currentEnemyState = new FleeEnemyState(this, targetPos, fleeDistance);
+                break;
         }
     }
 }

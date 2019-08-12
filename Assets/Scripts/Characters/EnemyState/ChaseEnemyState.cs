@@ -31,6 +31,9 @@ public class ChaseEnemyState : EnemyState
 
     public override void ExitState()
     {
+        if (ControllingEnemy is IMovableEnemy) {
+            (ControllingEnemy as IMovableEnemy).ChangeMoveDirection(Vector2.zero);
+        }
     }
 
     public override void FixedUpdateState(float fixedDeltaTime)
