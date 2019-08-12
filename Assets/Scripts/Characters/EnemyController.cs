@@ -29,7 +29,7 @@ public abstract class EnemyController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        OnUpdate();
+        OnFixedUpdate();
         currentEnemyState?.FixedUpdateState(Time.fixedDeltaTime);
     }
 

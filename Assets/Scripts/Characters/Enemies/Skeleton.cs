@@ -12,6 +12,7 @@ public class Skeleton : EnemyController, IMovableEnemy
 
     protected override void OnStart()
     {
+        moveDirection = Vector2.zero;
         rb = GetComponent<Rigidbody2D>();
 
         targetPos = GameObject.Find("Player").transform;
@@ -65,7 +66,7 @@ public class Skeleton : EnemyController, IMovableEnemy
                 currentEnemyState = new ChaseEnemyState(this, targetPos, catchUpDistance);
                 break;
             case EnemyStateType.Flee:
-                float fleeDistance = distanceFromTarget + distanceFromTargetBias;
+                float fleeDistance = distanceFromTarget - distanceFromTargetBias;
                 currentEnemyState = new FleeEnemyState(this, targetPos, fleeDistance);
                 break;
             case EnemyStateType.Idle:
@@ -80,7 +81,7 @@ public class Skeleton : EnemyController, IMovableEnemy
         {
             SwitchToState(EnemyStateType.Flee);
         }
-        else if (distance.magnitude > distanceFromTarget - distanceFromTargetBias) {
+        else if (distance.magnitude > distanceFromTarget + distanceFromTargetBias) {
             SwitchToState(EnemyStateType.Chase);
         }
     }

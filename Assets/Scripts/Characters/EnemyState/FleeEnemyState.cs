@@ -70,7 +70,7 @@ public class FleeEnemyState : EnemyState
     private bool EnemyNeedsToFlee() {
         Vector2 distanceToTarget = ControllingEnemy.transform.position - targetToFleeFrom.position;
 
-        return distanceToTarget.magnitude > fleeSuccessDistance;
+        return distanceToTarget.magnitude < fleeSuccessDistance;
     }
 
     #endregion
