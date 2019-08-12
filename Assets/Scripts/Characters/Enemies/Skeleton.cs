@@ -51,10 +51,6 @@ public class Skeleton : EnemyController, IMovableEnemy
         {
             moveDirection = rb.transform.position - targetPos.position;
         }
-        else if (distance.magnitude > distanceFromTarget + distanceFromTargetBias)
-        {
-            moveDirection = targetPos.position - rb.transform.position;
-        }
         else
         {
             moveDirection = Vector2.zero;
@@ -73,5 +69,15 @@ public class Skeleton : EnemyController, IMovableEnemy
     public void ChangeMoveDirection(Vector2 newMoveDirection)
     {
         moveDirection = newMoveDirection;
+    }
+
+    protected override void HandleSwitchingState(EnemyStateType stateToSwitchTo)
+    {
+        switch (stateToSwitchTo) {
+            case EnemyStateType.Chase:
+                float catchUpDistance = distanceFromTarget + distanceFromTargetBias;
+                currentEnemyState = new ChaseEnemyState(this, targetPos, catchUpDistance);
+                break;
+        }
     }
 }
