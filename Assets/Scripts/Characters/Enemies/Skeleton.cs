@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-public class Skeleton : EnemyController
+public class Skeleton : EnemyController, IMovableEnemy
 {
     [SerializeField] float distanceFromTarget = 10f;
     [SerializeField] float distanceFromTargetBias = 1f;
-    
+
     Vector2 moveDirection;
 
     Transform targetPos;
@@ -31,23 +31,23 @@ public class Skeleton : EnemyController
         // Aim and shoot the gun
         gun.Aim(targetPos.position);
         Vector2 lookDir = ((Vector2)targetPos.position - rb.position).normalized;
-        
+
         // We use lookdir but we should multiply it by the size of the enemy so that the raycast doesn't hit itself
         RaycastHit2D hit = Physics2D.Raycast(rb.position + lookDir, lookDir);
         if (hit.collider.name == "Player")
         {
             gun.Shoot();
-            Debug.DrawRay(rb.position + lookDir, hit.point - rb.position,Color.red);
+            Debug.DrawRay(rb.position + lookDir, hit.point - rb.position, Color.red);
         }
         else
         {
-            Debug.DrawRay(rb.position + lookDir,hit.point - rb.position);
+            Debug.DrawRay(rb.position + lookDir, hit.point - rb.position);
         }
 
         // Decide move direction
         // Player is too close to enemy, enemy wants to walk away
         Vector2 distance = rb.transform.position - targetPos.position;
-        if(distance.magnitude < distanceFromTarget - distanceFromTargetBias)
+        if (distance.magnitude < distanceFromTarget - distanceFromTargetBias)
         {
             moveDirection = rb.transform.position - targetPos.position;
         }
@@ -66,7 +66,12 @@ public class Skeleton : EnemyController
     void FixedUpdate()
     {
         Vector2 position = rb.transform.position;
-        
+
         rb.MovePosition(position + moveDirection * moveSpeed * Time.fixedDeltaTime);
+    }
+
+    public void ChangeMoveDirection(Vector2 newMoveDirection)
+    {
+        moveDirection = newMoveDirection;
     }
 }
