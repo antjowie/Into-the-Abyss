@@ -10,7 +10,7 @@ public class Skeleton : EnemyController, IMovableEnemy
     Transform targetPos;
     Rigidbody2D rb;
 
-    void Start()
+    protected override void OnStart()
     {
         rb = GetComponent<Rigidbody2D>();
 
@@ -26,7 +26,7 @@ public class Skeleton : EnemyController, IMovableEnemy
         Gizmos.DrawWireSphere(transform.position, distanceFromTarget + distanceFromTargetBias);
     }
 
-    void Update()
+    protected override void OnUpdate()
     {
         // Aim and shoot the gun
         gun.Aim(targetPos.position);
@@ -63,7 +63,7 @@ public class Skeleton : EnemyController, IMovableEnemy
         moveDirection.Normalize();
     }
 
-    void FixedUpdate()
+    protected override void OnFixedUpdate()
     {
         Vector2 position = rb.transform.position;
 

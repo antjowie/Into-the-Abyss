@@ -12,8 +12,8 @@ public abstract class EnemyState
         ControllingEnemy = enemyController;
     }
 
-    public abstract void OnStateEnter();
-    public abstract void OnUpdate(float deltaTime);
-    public abstract void OnFixedUpdate(float fixedDeltaTime);
-    public abstract void OnStateExit();
+    public abstract void EnterState();
+    public abstract void UpdateState(float deltaTime);
+    public abstract void FixedUpdateState(float fixedDeltaTime);
+    public abstract void ExitState();
 }
