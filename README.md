@@ -1,4 +1,5 @@
 # Into the Abyss
+*NOTE: I use this project as a means to learn C#. I will most likely reject pull requests but feel free to fork the project.*
 ## What is it?
 It is a 2D procedurally generated dungeon crawler game based around precise movement. It will also support local multiplayer. You play as a character that uses a sword to cut its way through problems and bullets. You fight against gunners. Everyone kills each other in one hit, so be careful when moving around. The game is meant to be short and is based around time.
 
