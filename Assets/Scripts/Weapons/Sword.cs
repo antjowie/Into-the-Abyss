@@ -18,12 +18,15 @@ public class Sword : MonoBehaviour
     bool isAttacking = false;
     
     Animator anim;
+    BoxCollider2D collider; 
     
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         anim.speed = 1f / attackDuration;
+
+        collider = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -40,6 +43,12 @@ public class Sword : MonoBehaviour
                 attackRegeneration = attackCooldown;
                 attackProgression = 0;
             }
+
+            collider.enabled = true;
+        }
+        else
+        {
+            collider.enabled = false;
         }
     }
 
@@ -52,9 +61,16 @@ public class Sword : MonoBehaviour
         }
         else if(collision.GetComponent<Bullet>())
         {
-            collision.GetComponent<Bullet>().CanKillEnemies = true;
-            Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
-            rb.velocity = (rb.position - (Vector2)transform.parent.position).normalized * rb.velocity.magnitude;
+            Bullet bullet = collision.GetComponent<Bullet>();
+            if (bullet.fromObject == gameObject.transform.parent.gameObject)
+                return;
+
+            bullet.GetComponent<CircleCollider2D>().enabled = true;
+            bullet.GetComponent<SpriteRenderer>().color = Color.green;
+
+            Vector2 direction = bullet.transform.position - transform.position;
+            bullet.Launch(
+                gameObject.transform.parent.gameObject, direction, bullet.speed);
         }
     }
 

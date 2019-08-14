@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
+// Player controller is responsible for handling input that is given to the player
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 5f;

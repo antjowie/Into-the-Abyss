@@ -1,17 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
     Rigidbody2D rb;
-    public bool CanKillEnemies = false;
+    public float speed { private set; get; }
+    public GameObject fromObject { private set; get; }
 
 
-
-    public void Launch(Vector2 direction, float speed)
+    public void Launch(GameObject gameObject, Vector2 direction, float speed)
     {
-        rb.velocity = direction.normalized * speed;
+        fromObject = gameObject;
+        this.speed = speed;
+        rb.velocity = direction.normalized * this.speed;
     }
 
     private void Awake()
@@ -22,6 +22,15 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(gameObject);
+        // This is called when a player or enemy is hit. The bullet should not traverse through walls
+        Hitable hitable = collision.gameObject.GetComponent<Hitable>();
+        if (hitable)
+        {
+            hitable.OnHit(this);
+        }
+        else if(!collision.GetComponent<Sword>())
+        {
+            Destroy(gameObject);
+        }
     }
 }

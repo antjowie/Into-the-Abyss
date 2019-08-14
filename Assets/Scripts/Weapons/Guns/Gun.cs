@@ -40,7 +40,7 @@ public class Gun : MonoBehaviour
         if(shotCooldown == 0f)
         {
             Bullet bullet = Instantiate(gunStats.bullet,transform.position,Quaternion.identity);
-            bullet.Launch(targetPos - (Vector2)transform.position, gunStats.bulletSpeed);
+            bullet.Launch(gameObject, targetPos - (Vector2)transform.position, gunStats.bulletSpeed);
             shotCooldown = 1f / gunStats.fireRate;
         }
     }

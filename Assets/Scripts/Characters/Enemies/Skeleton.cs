@@ -31,9 +31,12 @@ public class Skeleton : EnemyController
         // Aim and shoot the gun
         gun.Aim(targetPos.position);
         Vector2 lookDir = ((Vector2)targetPos.position - rb.position).normalized;
-        
+
         // We use lookdir but we should multiply it by the size of the enemy so that the raycast doesn't hit itself
-        RaycastHit2D hit = Physics2D.Raycast(rb.position + lookDir, lookDir);
+        // 10 = 1010
+        int layermask = (1 << 8) + (1 << 2);
+        layermask = ~layermask;
+        RaycastHit2D hit = Physics2D.Raycast(rb.position + lookDir, lookDir, 100000f, layermask);
         if (hit.collider.name == "Player")
         {
             gun.Shoot();
