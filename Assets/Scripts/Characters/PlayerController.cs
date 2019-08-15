@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
     }
-
+    
     // Update the movement that the player requests
     void UpdateMovement()
     {
