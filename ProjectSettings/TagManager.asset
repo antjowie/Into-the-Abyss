@@ -13,11 +13,11 @@ TagManager:
   - UI
   - 
   - 
-  - Bullets
-  - Terrain
-  - Walls
-  - Characters
-  - 
+  - Bullet
+  - Hazards
+  - Wall
+  - Player
+  - Enemy
   - 
   - 
   - 

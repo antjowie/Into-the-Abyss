@@ -101,6 +101,7 @@ MonoBehaviour:
   dashSpeed: 8
   dashDuration: 0.5
   dashCooldown: 2
+  state: 0
 --- !u!50 &5116942437757975218
 Rigidbody2D:
   serializedVersion: 4
@@ -150,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1af47b55b8f3c8b49b125b4483b5086d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeTillRestart: 5
+  player: {fileID: 0}
 --- !u!1001 &5512536591089480726
 PrefabInstance:
   m_ObjectHideFlags: 0

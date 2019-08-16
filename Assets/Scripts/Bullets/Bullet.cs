@@ -17,6 +17,7 @@ public class Bullet : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        transform.rotation = Quaternion.identity;
         Destroy(gameObject, 5);
     }
 

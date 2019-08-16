@@ -2,6 +2,7 @@
 
 using System.Collections;
 
+// This type of spawner spawns enemies for an infinite duration
 public class EndlessSpawner : Spawner
 {
     [SerializeField] GameObject[] spawnPrefabs = null;
