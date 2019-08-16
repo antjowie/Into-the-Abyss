@@ -4,7 +4,7 @@ using System.Collections;
 
 public class EndlessSpawner : Spawner
 {
-    [SerializeField] GameObject[] spawnPrefabs;
+    [SerializeField] GameObject[] spawnPrefabs = null;
     [SerializeField] int spawnCount = 1;
     [SerializeField] float spawnRate = 1f;
     

@@ -18,14 +18,14 @@ public class Sword : MonoBehaviour
     bool isAttacking = false;
     
     Animator anim;
-    BoxCollider2D collider; 
+    new BoxCollider2D collider; 
     
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         anim.speed = 1f / attackDuration;
-
+        
         collider = GetComponent<BoxCollider2D>();
     }
 

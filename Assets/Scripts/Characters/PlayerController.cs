@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 5f;
-    [SerializeField] Sword weapon;
+    [SerializeField] Sword weapon = null;
 
     [SerializeField] float dashSpeed = 8f;
     [SerializeField] float dashDuration = 0.5f;

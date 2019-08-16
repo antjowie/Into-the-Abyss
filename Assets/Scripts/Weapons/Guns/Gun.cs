@@ -4,7 +4,7 @@
 // It is responsible for displaying the weapon and updating its state using the strategy pattern.
 public class Gun : MonoBehaviour
 {
-    [SerializeField] GunStats gunStats;
+    [SerializeField] GunStats gunStats = null;
 
     Vector2 targetPos;
     float shotCooldown = 0f;
