@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 // This script listens for player input when the player has dies
 // it also triggers the HUD death animation
-public class GameOverManager : MonoBehaviour
+public class GameOver : MonoBehaviour
 {
     [SerializeField] PlayerController playerState;
 
