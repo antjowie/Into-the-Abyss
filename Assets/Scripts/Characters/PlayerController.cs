@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     InputDown verticalAttack = new InputDown("VerticalAttack");
     InputDown dash = new InputDown("Dash");
 
-    enum State
+    public enum PlayerState
     {
         Spawning,
         Idle,
@@ -32,12 +32,14 @@ public class PlayerController : MonoBehaviour
         Dashing,
         Dead
     }
-    State m_state = State.Spawning;
+
+    public PlayerState state;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        state = PlayerState.Spawning;
     }
     
     // Update the movement that the player requests
@@ -83,35 +85,35 @@ public class PlayerController : MonoBehaviour
         dash.Update();
 
         // Execute the fsm and the transitions
-        switch (m_state)
+        switch (state)
         {
-            case State.Spawning:
-                m_state = State.Idle;
+            case PlayerState.Spawning:
+                state = PlayerState.Idle;
                 break;
 
-            case State.Idle:
+            case PlayerState.Idle:
                 if(isDashing && isMoving)
                 {
-                    m_state = State.Dashing;
+                    state = PlayerState.Dashing;
                 } 
                 else if (isMoving)
                 {
-                    m_state = State.Moving;
+                    state = PlayerState.Moving;
                 }
                 break;
 
-            case State.Moving:
+            case PlayerState.Moving:
                 if(!isMoving)
                 {
-                    m_state = State.Idle;
+                    state = PlayerState.Idle;
                 }
                 else if (isDashing)
                 {
-                    m_state = State.Dashing;
+                    state = PlayerState.Dashing;
                 }
                 break;
 
-            case State.Dashing:
+            case PlayerState.Dashing:
                 // Initial enter condition
                 if (dashProgression == 0f)
                     dashDirection = movement;
@@ -133,17 +135,19 @@ public class PlayerController : MonoBehaviour
                     dashCooldownProgression = dashCooldown;
                     if(isMoving)
                     {
-                        m_state = State.Moving;
+                        state = PlayerState.Moving;
                     }
                     else
                     {
-                        m_state = State.Idle;
+                        state = PlayerState.Idle;
                     }
 
                 }
                 break;
 
-            case State.Dead:
+            case PlayerState.Dead:
+                // TODO: add death animation
+                Destroy(gameObject);
                 break;
         }
     }
@@ -151,24 +155,24 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         // Execute movement related stuff for the fsm
-        switch (m_state)
+        switch (state)
         {
-            case State.Spawning:
+            case PlayerState.Spawning:
                 break;
 
-            case State.Idle:
+            case PlayerState.Idle:
                 break;
 
-            case State.Moving:
+            case PlayerState.Moving:
                 rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
                 break;
 
-            case State.Dashing:
+            case PlayerState.Dashing:
                 rb.MoveRotation(dashRotation);
                 rb.MovePosition(rb.position + dashDirection * dashSpeed * Time.fixedDeltaTime);
                 break;
 
-            case State.Dead:
+            case PlayerState.Dead:
                 break;
         }
     }

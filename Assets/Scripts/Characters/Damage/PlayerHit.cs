@@ -1,20 +1,18 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 class PlayerHit : Hitable
 {
-    [SerializeField] private float TimeTillRestart = 5f;
-    
+    private PlayerController player = null;
+
     public override void OnHit(Bullet bullet)
     {
-        gameObject.SetActive(false);
+        // TODO, add a fsm to the player so that it can easily define on enter state changes
+        player.state = PlayerController.PlayerState.Dead;
         Destroy(bullet);
-
-        Invoke("RestartScene", TimeTillRestart);
     }
-    
-    private void RestartScene()
+
+    void Start()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        player = GetComponent<PlayerController>();   
     }
 }
