@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // it also triggers the HUD death animation
 public class GameOver : MonoBehaviour
 {
-    [SerializeField] PlayerController playerState;
+    [SerializeField] PlayerController playerState = null;
 
     Animator anim;
 
