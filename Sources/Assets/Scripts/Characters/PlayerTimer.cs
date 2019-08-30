@@ -12,7 +12,6 @@ public class PlayerTimer : MonoBehaviour
     {
         player = GetComponent<PlayerController>();
         deltaTime = initialTime = Time.timeSinceLevelLoad;
-        
     }
 
     private void Update()

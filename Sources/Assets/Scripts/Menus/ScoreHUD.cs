@@ -7,11 +7,19 @@ public class ScoreHUD : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI scoreText = null;
     [SerializeField] TextMeshProUGUI highscoreText = null;
-    [SerializeField] PlayerTimer timer = null;
+    [SerializeField] PlayerTimer score = null;
+
+    float hs;
+    const string hsKey = "highscore";
 
     private void Start()
     {
-        highscoreText.text = "NO HS";
+        hs = PlayerPrefs.GetFloat("highscore", -1);
+        if (hs == -1)
+            highscoreText.text = "NO HIGHSCORE";
+        else
+            highscoreText.text = "HS " + FormatToDate(hs);
+        
         ToUpdate();
     }
 
@@ -24,11 +32,17 @@ public class ScoreHUD : MonoBehaviour
     // during start. by doing this, I don't have to write logic twice
     private void ToUpdate()
     {
-        scoreText.text = "CS " + FormatToDate(timer.ElapsedTime());
+        scoreText.text = "CS " + FormatToDate(score.ElapsedTime());
     }
 
     private string FormatToDate(float aliveTimeInSeconds)
     {
         return TimeSpan.FromSeconds(aliveTimeInSeconds).ToString(@"mm\:ss\.ff");
+    }
+
+    private void OnDestroy()
+    {
+        if (score.ElapsedTime() > hs)
+            PlayerPrefs.SetFloat(hsKey, score.ElapsedTime());
     }
 }
